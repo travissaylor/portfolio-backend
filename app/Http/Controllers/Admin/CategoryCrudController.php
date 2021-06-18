@@ -18,6 +18,8 @@ class CategoryCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ReorderOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -40,7 +42,6 @@ class CategoryCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('parent_id');
-        CRUD::column('depth');
         CRUD::column('name');
         CRUD::column('slug');
 
@@ -62,7 +63,6 @@ class CategoryCrudController extends CrudController
         CRUD::setValidation(CategoryRequest::class);
 
         CRUD::field('parent_id');
-        CRUD::field('depth');
         CRUD::field('name');
         CRUD::field('slug');
 

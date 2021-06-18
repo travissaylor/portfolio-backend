@@ -24,6 +24,8 @@ class CategoryFactory extends Factory
     {
         return [
             'parent_id' => Category::factory(),
+            'lft' => $this->faker->randomNumber(),
+            'rgt' => $this->faker->randomNumber(),
             'depth' => $this->faker->randomNumber(),
             'name' => $this->faker->name,
             'slug' => $this->faker->slug,

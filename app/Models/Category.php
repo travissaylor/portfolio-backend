@@ -18,6 +18,8 @@ class Category extends Model
      */
     protected $fillable = [
         'parent_id',
+        'lft',
+        'rgt',
         'depth',
         'name',
         'slug',

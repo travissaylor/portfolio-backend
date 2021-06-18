@@ -13,7 +13,9 @@ models:
 
   Models\Category:
     parent_id: id foreign:categories nullable
-    depth: integer unsigned nullabled
+    lft: integer unsigned nullable
+    rgt: integer unsigned nullable
+    depth: integer unsigned nullable
     name: string
     slug: string unique
     softDeletes: true

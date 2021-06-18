@@ -18,6 +18,9 @@ class ProjectCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CloneOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkCloneOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,11 +42,10 @@ class ProjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('category_id');
         CRUD::column('title');
         CRUD::column('slug');
-        CRUD::column('description');
-        CRUD::column('image');
+        CRUD::column('category_id');
+        CRUD::column('tags')->type('relationship');
         CRUD::column('status');
 
         /**
@@ -63,12 +65,12 @@ class ProjectCrudController extends CrudController
     {
         CRUD::setValidation(ProjectRequest::class);
 
+        CRUD::field('title')->size(6);
+        CRUD::field('slug')->size(6);
+        CRUD::field('description')->type('ckeditor');
+        CRUD::field('image')->type('image');
         CRUD::field('category_id');
-        CRUD::field('title');
-        CRUD::field('slug');
-        CRUD::field('description');
-        CRUD::field('image');
-        CRUD::field('status');
+        CRUD::field('tags')->type('relationship');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
