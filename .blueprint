@@ -1,0 +1,19 @@
+created:
+    - database/factories/Models/ProjectFactory.php
+    - database/factories/Models/CategoryFactory.php
+    - database/factories/Models/TagFactory.php
+    - database/migrations/2021_06_18_204604_create_projects_table.php
+    - database/migrations/2021_06_18_204605_create_categories_table.php
+    - database/migrations/2021_06_18_204606_create_tags_table.php
+    - database/migrations/2021_06_18_204607_create_project_tag_table.php
+    - app/Models/Project.php
+    - app/Models/Category.php
+    - app/Models/Tag.php
+    - database/seeders/ProjectSeeder.php
+    - database/seeders/CategorySeeder.php
+    - database/seeders/TagSeeder.php
+models:
+    Models\User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Models\Project: { category_id: 'id foreign', title: string, slug: 'string unique default:''''', description: longtext, image: 'string nullable', status: 'enum:PUBLISHED,DRAFT', softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsToMany: Tag } }
+    Models\Category: { parent_id: 'id foreign:categories nullable', depth: 'integer unsigned nullabled', name: string, slug: 'string unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { hasMany: Project } }
+    Models\Tag: { name: string, slug: 'string unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsToMany: Project } }

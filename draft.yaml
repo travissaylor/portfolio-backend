@@ -1,0 +1,32 @@
+models:
+  Models\Project:
+    category_id: id foreign
+    title: string
+    slug: string unique default:''
+    description: longtext
+    image: string nullable
+    status: enum:PUBLISHED,DRAFT
+    softDeletes: true
+    timestamps: true
+    relationships:
+      belongsToMany: Tag
+
+  Models\Category:
+    parent_id: id foreign:categories nullable
+    depth: integer unsigned nullabled
+    name: string
+    slug: string unique
+    softDeletes: true
+    timestamps: true
+    relationships:
+      hasMany: Project
+
+  Models\Tag:
+    name: string
+    slug: string unique
+    softDeletes: true
+    timestamps: true
+    relationships:
+      belongsToMany: Project
+
+seeders: Project, Category, Tag
