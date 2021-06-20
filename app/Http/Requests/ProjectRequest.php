@@ -27,7 +27,6 @@ class ProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:255',
-            'slug' => 'required|min:5|max:255',
             'description' => 'required|min:20',
         ];
     }

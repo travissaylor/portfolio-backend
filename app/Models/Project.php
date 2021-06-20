@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class Project extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +39,20 @@ class Project extends Model
         'id' => 'integer',
         'category_id' => 'integer',
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function setImageAttribute($value)
     {
