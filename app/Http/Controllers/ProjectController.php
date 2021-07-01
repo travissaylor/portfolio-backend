@@ -34,9 +34,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($param)
     {
-        return Project::with(['category', 'tags'])->findOrFail($id);
+        return Project::with(['category', 'tags'])
+            ->where('id', $param)
+            ->orWhere('slug', $param)
+            ->firstOrFail();
     }
 
     /**

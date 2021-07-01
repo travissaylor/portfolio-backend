@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/projects', [ProjectController::class, 'index']);
 
-Route::get('/projects/{id}', [ProjectController::class, 'show']);
+Route::get('/projects/{param}', [ProjectController::class, 'show']);
